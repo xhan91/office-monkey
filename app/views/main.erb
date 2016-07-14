@@ -4,7 +4,7 @@
 		<h1>Office Monkey<h1>
 	</div>
 	<div>
-		<img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40">
+		<img class="avatar" src="<%= User.all.first.avatar %>" height="40" width="40">
 	</div>
 	<div>
 		<a href="/" class="icon">Logout</a>
@@ -21,7 +21,7 @@
 </section>
 
 <section class="post_review">
-	<img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40">
+	<img class="avatar" src="@User.all.first.avatar" height="40" width="40">
 	<div class="dropdown">
 		<h4>Subject</h4>
 	</div>
@@ -37,4 +37,13 @@
 
 <button>Generate Workplace Report</button>
 
+<% User.all.each do |user| %>
+	<% user.critiques.each do |critique| %>
+		<div>
+			<% if critique.created_at > Date.today-1%>
+				<p><%= critique.content %></p>
+			<% end %>
+		</div>
+	<% end %>
+<% end %>
 
