@@ -1,4 +1,5 @@
 # Gets the main page of Office Monkey (Critique Wall)
+require 'chartkick'
 get '/' do
   erb :main
 end
@@ -43,4 +44,8 @@ end
 # Gets the analysis page for all user critiques
 get '/analysis' do
 
+end
+
+get '/report' do
+	erb :'report/show_report'
 end
