@@ -10,6 +10,7 @@ end
 
 # Gets the main page of Office Monkey (Critique Wall)
 get '/' do
+  session[:user_id] = 2
   erb :main
 end
 

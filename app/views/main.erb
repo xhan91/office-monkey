@@ -1,20 +1,8 @@
-
-<header>
-	<div>
-		<h1>Office Monkey</h1>
-	</div>
-	<div>
-		<img class="avatar" src="<%= User.second.avatar %>" height="40" width="40">
-	</div>
-	<div>
-		<a href="/" class="icon">Logout</a>
-	</div>
-</header>
 <div class="container">
 <div class="columns">
 <div class="column is-two-thirds">
   <section class="post_review section">
-  	<img class="avatar" src="<%= User.second.avatar %>" height="40" width="40">
+  	<img class="avatar" src="<%= current_user.avatar %>" height="40" width="40">
   	<div class="dropdown">
   		<h4>Subject</h4>
   	</div>
@@ -30,7 +18,51 @@
 
   <section class="section">
     <article class="media">
-      
+      <figure class="media-left">
+        <p class="image is-64x64">
+          <img src="<%= current_user.avatar %>" alt="avatar">
+        </p>
+      </figure>
+      <div class="media-content">
+        <form method="POST" action="/critiques">
+          <input type="hidden" name="user_id" value="<%= current_user.id %>">
+          <div class="control is-horizontal">
+          <div class="control is-grouped">
+            <div class="control-label is-expanded">
+              <label class="label">Banana</label>
+            </div>
+            <p class="control is-expanded">
+              <span class="select">
+                <select>
+                  <option>Ripe Banana</option>
+                  <option>Rotten Banana</option>
+                </select>
+              </span>
+            </p>
+            <div class="control-label">
+              <label class="label">Subject</label>
+            </div>
+            <p class="control is-expanded">
+              <span class="select">
+                <select>
+                  <% Subject.all.each do |subject| %>
+                    <option><%= subject.name %></option>
+                  <% end %>
+                </select>
+              </span>
+            </p>
+          </div>
+          </div>
+          <div class="control is-horizontal">
+          <div class="control-label">
+            <label class="label">Subject</label>
+          </div>
+          <p class="control">
+            <textarea  name="content" placeholder=""></textarea>
+          </p>
+          </div>
+        </form>
+      </div>
     </article>
   </section>
 
