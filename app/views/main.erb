@@ -1,0 +1,7 @@
+<div>
+</div>
+<div>
+  <div><h1>What is your critique today?</h1></div>
+  <% Critique.where("created_at < ? ", Date.today).each do |critique| %>
+  <% end %>
+</div>
