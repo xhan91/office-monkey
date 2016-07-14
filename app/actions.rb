@@ -1,3 +1,13 @@
+enable :sessions
+
+helpers do 
+
+  def current_user
+    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+  end
+
+end
+
 # Gets the main page of Office Monkey (Critique Wall)
 get '/' do
   erb :main
@@ -6,14 +16,16 @@ end
 # Automatically set the session's user
 # Clicking the login button will trigger this action
 post '/sessions' do
-  # Redirect to main page
+  session[:user_id] = User.find(2).id
+  redirect '/'
 end
 
 ###### USER PROFILE ###########
 
 # Gets a user's profile page
 get '/users/:user_id' do
-
+  @user = User.find(2)
+  erb :'/users/show_profile'
 end
 
 ###### CRITIQUE WALL ###########
