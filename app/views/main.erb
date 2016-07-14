@@ -1,49 +1,88 @@
 
 <header>
 	<div>
-		<h1>Office Monkey<h1>
+		<h1>Office Monkey</h1>
 	</div>
 	<div>
-		<img class="avatar" src="<%= User.all.first.avatar %>" height="40" width="40">
+		<img class="avatar" src="<%= User.second.avatar %>" height="40" width="40">
 	</div>
 	<div>
 		<a href="/" class="icon">Logout</a>
 	</div>
-<header>
+</header>
+<div class="container">
+<div class="columns">
+<div class="column is-two-thirds">
+  <section class="post_review section">
+  	<img class="avatar" src="<%= User.second.avatar %>" height="40" width="40">
+  	<div class="dropdown">
+  		<h4>Subject</h4>
+  	</div>
+  	<div class="ripe-or-rotten">
+  		<p>Ripe Banana</p>
+  		<p>Rotten Banana</p>
+  	</div>
+  	<div class="critique_submit">
+  		<textarea>CRITIQUE</textarea>
+  	</div>
+  	<button>Post</button>
+  </section>
 
-<section class="trending">
-	<div>
-		<h3>Top Critique</h3>
-	</div>
-	<div>
-		Most Critiqued
-	</div>
-</section>
+  <section class="section">
+    <article class="media">
+      
+    </article>
+  </section>
 
-<section class="post_review">
-	<img class="avatar" src="@User.all.first.avatar" height="40" width="40">
-	<div class="dropdown">
-		<h4>Subject</h4>
-	</div>
-	<div class="ripe-or-rotten">
-		<p>Ripe Banana</p>
-		<p>Rotten Banana</p>
-	</div>
-	<div class="critique_submit">
-		<textarea>CRITIQUE</textarea>
-	</div>
-	<button>Post</button>
-</section>
 
-<button>Generate Workplace Report</button>
-
+<section class="section">
 <% User.all.each do |user| %>
 	<% user.critiques.each do |critique| %>
-		<div>
-			<% if critique.created_at > Date.today-1%>
-				<p><%= critique.content %></p>
-			<% end %>
-		</div>
+		<% if critique.created_at > Date.today-1%>
+      <article class="media is-primary">
+        <div class="media-left">
+          <p class="image is-64x64">
+            <img src="<%= user.avatar %>" alt="avatar">
+          </p>
+        </div>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong><%= user.username %></strong> <small><%= critique.created_at %></small>
+              <br/>
+              <%= critique.content %>
+            </p>
+          </div>
+          <nav class="level">
+            <div class="level-left">
+              <a class="level-item">
+                <span class="icon "><i class="fa fa-reply"></i></span>
+              </a>
+              <a class="level-item">
+                <span class="icon "><i class="fa fa-retweet"></i></span>
+              </a>
+              <a class="level-item">
+                <%= Vote.where(critique: critique).count %> <span class="icon "><i class="fa fa-heart"></i></span>
+              </a>
+            </div>
+          </nav>
+        </div>
+      </article>
+		<% end %>
 	<% end %>
 <% end %>
+</section>
+</div>
 
+<div class="trending column">
+<section class="section">
+  <div>
+    <h3>Top Critique</h3>
+  </div>
+  <div>
+    Most Critiqued
+  </div>
+</section>
+</div>
+</div>
+</div>
