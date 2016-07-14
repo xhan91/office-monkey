@@ -9,6 +9,7 @@ helpers do
 end
 
 # Gets the main page of Office Monkey (Critique Wall)
+require 'chartkick'
 get '/' do
   session[:user_id] = 2
   erb :main
@@ -56,4 +57,8 @@ end
 # Gets the analysis page for all user critiques
 get '/analysis' do
 
+end
+
+get '/report' do
+	erb :'report/show_report'
 end
