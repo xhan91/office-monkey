@@ -1,10 +1,21 @@
 <header>
 	<div>
 		<h1>Office Monkey<h1>
+    <h1><%= @user.username %></h1>
 	</div>
+
 	<div>
 		<img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40">
 	</div>
+
+  <div>
+    <% @user.critiques.each do |critique| %>
+      <div>
+        <p><%= critique.content %></p>
+      </div>
+    <% end %>
+  </div>
+
 	<div>
 		<a href="/" class="icon">Logout</a>
 	</div>
