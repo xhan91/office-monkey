@@ -1,7 +1,40 @@
-<div>
-</div>
-<div>
-  <div><h1>What is your critique today?</h1></div>
-  <% Critique.where("created_at < ? ", Date.today).each do |critique| %>
-  <% end %>
-</div>
+
+<header>
+	<div>
+		<h1>Office Monkey<h1>
+	</div>
+	<div>
+		<img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40">
+	</div>
+	<div>
+		<a href="/" class="icon">Logout</a>
+	</div>
+<header>
+
+<section class="trending">
+	<div>
+		<h3>Top Critique</h3>
+	</div>
+	<div>
+		Most Critiqued
+	</div>
+</section>
+
+<section class="post_review">
+	<img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40">
+	<div class="dropdown">
+		<h4>Subject</h4>
+	</div>
+	<div class="ripe-or-rotten">
+		<p>Ripe Banana</p>
+		<p>Rotten Banana</p>
+	</div>
+	<div class="critique_submit">
+		<textarea>CRITIQUE</textarea>
+	</div>
+	<button>Post</button>
+</section>
+
+<button>Generate Workplace Report</button>
+
+
