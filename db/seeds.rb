@@ -31,7 +31,6 @@ def content_generator(is_ripe_banana, subject)
   end
 end
 
-critiques = []
 users.each do |user|
   (rand(10)+6).times do
     subject = subjects.sample
@@ -48,3 +47,15 @@ users.each do |user|
 end
 
 # let users vote
+users.each do |user|
+  # users vote up for their own critiques
+  # users vote others' critiques randomly, 1/2 possibility
+  Critique.all.each do |critique|
+    if critique.user == user || rand(2) == 0
+      Vote.create(user: user, critique: critique)
+    end
+  end
+end
+
+
+
