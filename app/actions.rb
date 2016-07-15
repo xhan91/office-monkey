@@ -27,6 +27,7 @@ end
 # Gets a user's profile page
 get '/users/:user_id' do
   @user = User.find(2)
+  @most_recent_critique = @user.critiques.order(:created_at).first
   erb :'/users/show_profile'
 end
 
