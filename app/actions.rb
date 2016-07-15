@@ -85,3 +85,8 @@ end
 get '/report' do
 	erb :'report/show_report'
 end
+
+get '/report/:id' do
+  @subject_id = params[:id]
+  erb :'report/report_details'
+end

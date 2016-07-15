@@ -48,7 +48,9 @@
 				<h3>Satisfaction with: <%= subject.name %></h3>
 			 </div>
   	<div class="message-body">
+    <a href="/report/<%= subject.id %>">
 			<%= pie_chart Subject.joins(:critiques).where("subjects.name = '#{subject.name}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"] %>
+      </a>
 		</div>
 </article>
 		</div>
