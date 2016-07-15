@@ -56,23 +56,25 @@
 <nav class="nav is-warning brown-background">
   <div class="container">
     <div class="nav-left nav-menu">
-      <a class="nav-item">
-        <p class="sorting-options">Subject</p>
-      </a>
-      <a class="nav-item">
-        <p class="sorting-options">Ripe Reviews</p>
-      </a>
-      <a class="nav-item">
-        <p class="sorting-options">Rotten Reviews</p>
-      </a>
-      <a class="nav-item">
-        <p class="sorting-options">Upvote Count</p>
-      </a>
+      <span class="nav-item">
+          <a class="button yellow-background">
+            <span class="sorting-options" style="color: black">Subject</span>
+          </a>
+          <a class="button yellow-background">
+            <span class="sorting-options" style="color: black">Ripe Reviews</span>
+          </a>
+          <a class="button yellow-background">
+            <span class="sorting-options" style="color: black">Rotten Reviews</span>
+          </a>
+          <a class="button yellow-background">
+            <span class="sorting-options" style="color: black">Upvote Count</span>
+          </a>
+      </span>
     </div>
   </div>
 </nav>
 
-<!-- COMMENTS SECTION -->
+<!-- CRITIQUE SECTION -->
 <section class="section yellow-background">
   <div class="container">
   <% @user.critiques.each do |critique| %>
