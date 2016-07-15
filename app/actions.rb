@@ -98,6 +98,7 @@ get '/report' do
 end
 
 get '/report/:id' do
+  @subject = Subject.find params[:id]
   @subject_id = params[:id]
   erb :'report/report_details'
 end
