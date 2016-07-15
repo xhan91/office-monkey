@@ -1,3 +1,7 @@
 .not-resizable {
   resize: none;
 }
+
+.icon-voted {
+  color: red;
+}
