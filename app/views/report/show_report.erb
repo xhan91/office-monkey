@@ -5,7 +5,7 @@
         Employee Wellness Report
       </h1>
       <h2 class="subtitle">
-        By Office Monkey
+
       </h2>
     </div>
   </div>
@@ -16,7 +16,7 @@
     <h2 class="is-medium">Amount of postive comments per subject</h2>
   </div>
   <div class="message-body">
-    <%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id') %>
+    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id') %>
   </div>
 </article>
 
@@ -26,7 +26,7 @@
     <h2>Amount of negative comments per subject</h2>
   </div>
   <div class="message-body">
-    <%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id') %>
+    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id'), colors: ["DC3912"] %>
   </div>
 </article>
 
@@ -42,13 +42,13 @@
 
 <div class="columns is-multiline is-mobile">
 <% Subject.all.each do |subject| %>
-		<div class="column is-one-third">
+		<div class="column is-half">
 			<article class="message">
  			 <div class="message-header">
 				<h3>Satisfaction with: <%= subject.name %></h3>
 			 </div>
   	<div class="message-body">
-			<%= pie_chart Subject.joins(:critiques).where("subjects.name = '#{subject.name}'").group('critiques.is_ripe_banana').count %>
+			<%= pie_chart Subject.joins(:critiques).where("subjects.name = '#{subject.name}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"] %>
 		</div>
 </article>
 		</div>
