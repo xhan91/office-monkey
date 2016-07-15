@@ -28,6 +28,7 @@ get '/users/:user_id' do
   @user = User.find(2)
   @most_recent_critique = @user.critiques.order(created_at: :desc).first
   binding.pry
+
   case params[:filter_criteria]
   when "subject"
       @user_critiques = @user.critiques.order(:subject_id)
@@ -35,12 +36,13 @@ get '/users/:user_id' do
       @user_critiques = @user.critiques.where(is_ripe_banana: true).order(created_at: :desc)
   when "rotten_reviews"
       @user_critiques = @user.critiques.where(is_ripe_banana: false).order(created_at: :desc)
+  when "recently_posted"
+      @user_critiques = @user.critiques.order(created_at: :desc)
   else
-    @user_critiques = @user.critiques.order(created_at: :desc)
+      @user_critiques = @user.critiques.order(created_at: :desc)
   end
 
   params.delete(:filter_criteria)
-
   erb :'/users/show_profile'
 end
 
