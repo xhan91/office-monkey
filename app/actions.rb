@@ -12,7 +12,7 @@ end
 require 'chartkick'
 get '/' do
   session[:user_id] = 2
-  @critiques = Critique.all.order(:created_at).limit(10)
+  @critiques = Critique.all.order(created_at: :desc).limit(10)
   erb :main
 end
 
@@ -51,8 +51,7 @@ post '/critiques' do
     is_ripe_banana: is_ripe_banana,
     content: content)
   if request.xhr?
-    content_type :json
-    critique.to_json
+    erb :_critique_wall, layout: false, locals: { critique: critique }
   else
     redirect '/'
   end

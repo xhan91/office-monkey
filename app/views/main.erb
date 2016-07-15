@@ -3,7 +3,7 @@
     <div class="column is-two-thirds">
 
 
-      <section class="section">
+      <section class="section critique-wall">
       	<% @critiques.each do |critique| %>
           <%= erb :_critique_wall, locals: { critique: critique } %>
         <% end %>

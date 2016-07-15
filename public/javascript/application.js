@@ -26,7 +26,9 @@ $(document).ready(function() {
             url: form.attr("action"),
             data: form.serialize(),
             success: function (data) {
-
+                var wall = $(".critique-wall");
+                wall.prepend(data);
+                // wall.find(".box").fadeIn();
             }
         });
     });
