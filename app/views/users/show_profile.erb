@@ -1,83 +1,107 @@
-<header>
-
-<!-- COMPLETELY RESTRUCTURE THIS PAGE! -->
-
-<!-- USER PROFILE PICTURE -->
+<section class="section yellow-background">
   <div class="container">
-    <div class="columns">
-      <div class="column is-one-third">
+    <div class="tile is-ancestor">
+
+    <!--- CONTAINS THE USER AVATAR AND USERNAME -->
+      <div class="tile is-parent">
         <div class="card">
-
-          <div class="card-content" style="background-color: yellow">
-              <p style="text-align: left"><%= @user.username %></p>
-          </div>
-
           <div class="card-image">
             <figure class="image is-4by3">
-              <!-- <img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40"> -->
-              <img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg">
+              <img src="<%= @user.avatar %>" alt="">
             </figure>
+          </div>
+          <div class="card-content brown-background">
+            <div class="media">
+              <div class="media-left">
+                <figure class="image is-32x32">
+                  <img class="mini-avatar-border" src="<%= @user.avatar %>"" alt="Image">
+                </figure>
+              </div>
+              <div class="media-content">
+                <p class="title is-5 yellow-text"><%= @user.username %></p>
+                <p class="subtitle is-6 yellow-text"><%= @user.critiques.count %> critiques</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      <!-- CONTAINS THE MOST RECENT CRITIQUE -->
+      <div class="tile is-parent">
+        <div class="card is-fullwidth">
+          <header class="card-header">
+            <p class="card-header-title">
+              Most Recent Critique
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              <blockquote>
+                <%= @most_recent_critique.subject.name %>
+                <br>
+                <%= @most_recent_critique.content %>
+              </blockquote>
+              <small><%= @most_recent_critique.created_at.to_date %></small>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
     </div>
   </div>
+</section>
 
-  <nav class="nav has-shadow">
+<!-- NAVBAR WITH SORTING BUTTONS -->
+<nav class="nav is-warning brown-background">
   <div class="container">
-    <div class="nav-left">
-      <a class="nav-item is-tab is-active" href="/documentation/components/card/">
-        Most Recent
+    <div class="nav-left nav-menu">
+      <label class="nav-item white-text">
+        Sort By
+      </label>
+      <a class="nav-item">
+        <p class="white-text">Subject</p>
       </a>
-      <a class="nav-item is-button " href="/documentation/components/level/">
-        Subject
+      <a class="nav-item white-text">
+        <p class="white-text">Ripe Reviews</p>
       </a>
-      <a class="nav-item is-tab " href="/documentation/components/media-object/">
-        Ripe Critiques
+      <a class="nav-item white-text">
+        <p class="white-text">Rotten Reviews</p>
       </a>
-      <a class="nav-item is-tab " href="/documentation/components/menu/">
-        Rotten Critiques
+      <a class="nav-item white-text">
+        <p class="white-text">Upvote Count</p>
       </a>
     </div>
   </div>
 </nav>
 
-  <!-- COMMENTS SECTION -->
-  <div class="section">
-    <div class="columns">
-      <div class="column is-one-third">
-        <% @user.critiques.each do |critique| %>
-
-          <article class="media">
-            <div class="media-left">
-              <figure class="image is-64x64">
-                <img src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg"alt="Image">
-              </figure>
-            </div>
-
-            <div class="media-content">
-              <div class="content">
-                <p>
-                  <strong><%= critique.subject.name %></strong>
-                  <br>
-                  <small><%= critique.created_at %></small>
-                  <br>
-                  <%= critique.content %>
-                </p>
-              </div>
-              <nav class="level">
-                <div class="level-left">
-                  <a class="level-item">
-                    <span class="icon is-small"><i class="fa fa-heart"></i></span>
-                  </a>
-                </div>
-              </nav>
-            </div>
-          </article>
-
-        <% end %>
+<!-- COMMENTS SECTION -->
+<section class="section yellow-background">
+  <div class="container">
+  <% @user.critiques.each do |critique| %>
+    <article class="media message" style="background-color: <%= critique.is_ripe_banana ? "green" : "red"%>">
+      <div class="media-left">
+        <p class="image is-64x64">
+          <img src="<%= @user.avatar %>" alt="avatar">
+        </p>
       </div>
-    </div>
+      <div class="media-content">
+        <div class="content" style="color: white">
+          <p>
+            <strong><%= @user.username %></strong> <small><%= critique.created_at %></small>
+            <br/>
+            <%= critique.content %>
+          </p>
+        </div>
+        <nav class="level">
+          <div class="level-left">
+            <a class="level-item" style="color: yellow">
+              <%= Vote.where(critique: critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
+            </a>
+          </div>
+        </nav>
+      </div>
+    </article>
+  <% end %>
   </div>
-
-<header>
+</section>
