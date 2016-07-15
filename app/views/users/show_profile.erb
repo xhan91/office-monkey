@@ -28,21 +28,36 @@
 
       <!-- CONTAINS THE MOST RECENT CRITIQUE -->
       <div class="tile is-parent">
-        <div class="card is-fullwidth">
+        <div class="card is-fullwidth brown-background">
           <header class="card-header">
-            <p class="card-header-title">
+            <p class="card-header-title most-recent-critique-header">
               Most Recent Critique
             </p>
           </header>
           <div class="card-content">
-            <div class="content">
-              <blockquote>
-                <%= @most_recent_critique.subject.name %>
-                <br>
-                <%= @most_recent_critique.content %>
-              </blockquote>
-              <small><%= @most_recent_critique.created_at.to_date %></small>
-            </div>
+            <article class="media message" style="background-color: <%= @most_recent_critique.is_ripe_banana ? "green" : "red"%>">
+              <div class="media-left">
+                <p class="image is-64x64">
+                <img src="<%= @user.avatar %>" alt="avatar">
+                </p>
+              </div>
+              <div class="media-content">
+                <div class="content white-text">
+                  <strong class="white-text critique-subject"><%= @most_recent_critique.subject.name %></strong> 
+                  <br>
+                  <p class="critique-content"><%= @most_recent_critique.content %></p>
+                  <br>
+                  <small><%= @most_recent_critique.created_at %></small>
+                  <nav class="level">
+                    <div class="level-left">
+                      <a class="level-item" style="color: yellow">
+                        <%= Vote.where(critique: @most_recent_critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
+                      </a>
+                    </div>
+                  </nav>
+                </div>
+              </div>
+            </article> 
           </div>
         </div>
       </div>
