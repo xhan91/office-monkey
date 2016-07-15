@@ -33,7 +33,7 @@
           View Critiques By...
         </div>
         <div class="message-body">
-          <form method="POST" action="/users/<%= @user.id %>">
+          <form method="GET" action="/users/<%= @user.id %>">
             <input type="hidden" name="user_id" value="@user.id">
             <p class="control">
               <span class="select">

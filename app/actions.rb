@@ -1,5 +1,4 @@
 enable :sessions
-
 helpers do 
 
   def current_user
