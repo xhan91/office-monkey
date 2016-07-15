@@ -2,6 +2,10 @@
   resize: none;
 }
 
+.icon-voted {
+  color: red;
+}
+
 .yellow-background {
   background-color: yellow;
 }
@@ -44,8 +48,4 @@
 
 .yellow-text {
   color: yellow;
-
-.icon-voted {
-  color: red;
-
 }

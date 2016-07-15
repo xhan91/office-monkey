@@ -4,13 +4,15 @@ $(document).ready(function() {
 
     // voting up and down in main page
     $(".vote-btn").click(function() {
-        var tmp = $(this)
+        var voteBtn = $(this)
+        voteBtn.addClass("is-loading")
         $.post("/votes", { 
-            user_id: $(this).find("#user_id").val(), 
-            critique_id: $(this).find("#critique_id").val() }, 
+            user_id: $(this).find(".user_id").val(), 
+            critique_id: $(this).find(".critique_id").val() }, 
             function(result) {
-                tmp.find("#vote-count").text(result);
-                tmp.find(".icon").toggleClass("icon-voted");
+                voteBtn.find(".vote-count").text(result);
+                voteBtn.removeClass("is-loading");
+                voteBtn.toggleClass("is-outlined");
         });
     });
 
