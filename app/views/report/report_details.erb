@@ -1,0 +1,35 @@
+<div class="columns is-mobile">
+<div class="column is-half is-offset-one-quarter">
+	<h3>Satisfaction with: <%=@subject.name%></h3>
+	<%= pie_chart Subject.joins(:critiques).where("subjects.id = '#{@subject_id}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"], library: {backgroundColor: "#f5f7fa"} %>
+</div>
+</div>
+
+<% Critique.where(subject_id: @subject_id).each do |critique| %>
+	<div class="box">
+  <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
+    <div class="media-left">
+      <figure class="image is-64x64">
+        <img src="<%= critique.user.avatar %>" alt="Image">
+      </figure>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%=critique.user.username%></strong> <small><%=critique.created_at%></small> <small>31m</small>
+          <br>
+          <%= critique.content %>
+        </p>
+      </div>
+      <nav class="level">
+        <div class="level-left">
+          <a class="level-item">
+            <span class="vote-count"><%= Vote.where(critique: critique).count %></span> <span class="icon"><i class="fa fa-heart"></i></span>
+          </a>
+        </div>
+      </nav>
+    </div>
+  </article>
+</div>
+<% end %>
+
