@@ -1,0 +1,17 @@
+
+<h1 class="is-large">Employee Welness Report</h1>
+<h2>Amount of postive comments per subject</h2>
+<%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id') %>
+<h2>Amount of negative comments per subject</h2>
+<%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id') %>
+<h2>Most Discussed Subjects</h2>
+<%= pie_chart Subject.joins(:critiques).group('subjects.name').count('critiques.subject_id') %>
+
+<% Subject.all.each do |subject| %>
+	<div class="columns">
+		<h3>Satisfaction with: <%= subject.name %></h3>
+		<%= pie_chart Subject.joins(:critiques).where("subjects.name = '#{subject.name}'").group('critiques.is_ripe_banana').count %>
+	</div>
+<% end %>
+
+<!-- "Employee Cafeteria", "Employee Gym", "Work Life Balance", "Office Social Events", "Office Stationary Supplies", "Office Furniture", "Office Temperature", "Office Noise Level", "Office Technology", "Mental Health" -->
