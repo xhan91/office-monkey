@@ -9,7 +9,9 @@ helpers do
 end
 
 # Gets the main page of Office Monkey (Critique Wall)
+require 'chartkick'
 get '/' do
+  session[:user_id] = 2
   erb :main
 end
 
@@ -37,7 +39,21 @@ end
 
 # Posts a new critique to the Critique Wall
 post '/critiques' do
-
+  user = User.find params[:user_id]
+  subject = Subject.find params[:subject_id]
+  is_ripe_banana = (params[:banana] == "true")
+  content = params[:content]
+  if critique = Critique.create(
+    user: user,
+    subject: subject,
+    is_ripe_banana: is_ripe_banana,
+    content: content)
+    session[:flash] = "Post a new feedback successfully!"
+    redirect '/'
+  else
+    session[:flash] = critique.errors.full_messages
+    redirect '/'
+  end
 end
 
 # Deletes a critique from the Critique Wall
@@ -55,4 +71,8 @@ end
 # Gets the analysis page for all user critiques
 get '/analysis' do
 
+end
+
+get '/report' do
+	erb :'report/show_report'
 end

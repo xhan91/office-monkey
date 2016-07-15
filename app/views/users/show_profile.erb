@@ -1,22 +1,83 @@
 <header>
-	<div>
-		<h1>Office Monkey<h1>
-    <h1><%= @user.username %></h1>
-	</div>
 
-	<div>
-		<img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40">
-	</div>
+<!-- COMPLETELY RESTRUCTURE THIS PAGE! -->
 
-  <div>
-    <% @user.critiques.each do |critique| %>
-      <div>
-        <p><%= critique.content %></p>
+<!-- USER PROFILE PICTURE -->
+  <div class="container">
+    <div class="columns">
+      <div class="column is-one-third">
+        <div class="card">
+
+          <div class="card-content" style="background-color: yellow">
+              <p style="text-align: left"><%= @user.username %></p>
+          </div>
+
+          <div class="card-image">
+            <figure class="image is-4by3">
+              <!-- <img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg" height="40" width="40"> -->
+              <img class="avatar" src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg">
+            </figure>
+          </div>
+        </div>
       </div>
-    <% end %>
+    </div>
   </div>
 
-	<div>
-		<a href="/" class="icon">Logout</a>
-	</div>
+  <nav class="nav has-shadow">
+  <div class="container">
+    <div class="nav-left">
+      <a class="nav-item is-tab is-active" href="/documentation/components/card/">
+        Most Recent
+      </a>
+      <a class="nav-item is-button " href="/documentation/components/level/">
+        Subject
+      </a>
+      <a class="nav-item is-tab " href="/documentation/components/media-object/">
+        Ripe Critiques
+      </a>
+      <a class="nav-item is-tab " href="/documentation/components/menu/">
+        Rotten Critiques
+      </a>
+    </div>
+  </div>
+</nav>
+
+  <!-- COMMENTS SECTION -->
+  <div class="section">
+    <div class="columns">
+      <div class="column is-one-third">
+        <% @user.critiques.each do |critique| %>
+
+          <article class="media">
+            <div class="media-left">
+              <figure class="image is-64x64">
+                <img src="https://news.artnet.com/app/news-upload/2015/11/2014-08-27-david-slater-monkey-selfie-e1447430071339-256x256.jpg"alt="Image">
+              </figure>
+            </div>
+
+            <div class="media-content">
+              <div class="content">
+                <p>
+                  <strong><%= critique.subject.name %></strong>
+                  <br>
+                  <small><%= critique.created_at %></small>
+                  <br>
+                  <%= critique.content %>
+                </p>
+              </div>
+              <nav class="level">
+                <div class="level-left">
+                  <a class="level-item">
+                    <span class="icon is-small"><i class="fa fa-heart"></i></span>
+                  </a>
+                </div>
+              </nav>
+            </div>
+          </article>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+
 <header>
