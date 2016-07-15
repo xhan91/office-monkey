@@ -1,9 +1,11 @@
 <div class="box">
   <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
     <div class="media-left">
+      <a href="users/<%= critique.user_id %>">
       <p class="image is-64x64">
-        <img src="<%= critique.user.avatar %>" alt="avatar">
+        <img src="<%= critique.user.avatar %> alt="avatar">
       </p>
+      </a>
     </div>
     <div class="media-content">
       <div class="content">

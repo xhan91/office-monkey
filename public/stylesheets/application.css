@@ -1,66 +1,49 @@
 .not-resizable {
-  resize: none;
-}
-
-.icon-voted {
-  color: red;
-}
-
-.yellow-background {
-  background-color: yellow;
-}
-.brown-background {
-  background-color: #52371a;
-}
+  resize: none; }
 
 /***** MAIN NAV BAR *******/
 .brand-name {
-  color: yellow;
-  font-size: 1.75em;
-}
-/***********************/
+  color: white;
+  font-size: 1.75em; }
 
+.nav {
+  background-color: #52489C; }
+
+/***********************/
 /****** USER PROFILE ********/
+.is-ripe {
+  background-color: #59C3C3; }
+
+.is-rotten {
+  background-color: #F45B69; }
+
 .critique-box {
-  background-color: #52371a;
-}
+  background-color: #4062BB; }
+
 .critique-subject {
-  font-size: 2em;
-}
+  font-size: 2em; }
 
 .critique-content {
-  font-size: 1.25em;
-}
+  font-size: 1.25em; }
 
 .mini-avatar-border {
-  border: 1px solid yellow;
-}
+  border: 1px solid white; }
 
 .most-recent-critique-header {
   font-size: 2.75em;
-  color: yellow;
-}
+  color: white; }
 
 .white-text {
-  color: white;
-}
+  color: white; }
 
 .sorting-options {
   color: white;
-  font-size: 1.2em;
-}
+  font-size: 1.2em; }
 
 .username-on-profile {
   font-size: 2em;
-  color: yellow;
-}
+  color: white; }
 
-.yellow-text {
-  color: yellow;
-}
 /***********************/
 
-.icon-voted {
-  color: red;
-}
-
+/*# sourceMappingURL=application.css.map */

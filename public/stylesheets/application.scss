@@ -1,0 +1,64 @@
+$theme-dark: #52489C;
+$theme-light: #4062BB;
+$theme-good: #59C3C3;
+$theme-bad: #F45B69;
+
+.not-resizable {
+  resize: none;
+}
+
+/***** MAIN NAV BAR *******/
+.brand-name {
+  color: white;
+  font-size: 1.75em;
+}
+
+.nav {
+  background-color: $theme-dark;
+}
+
+/***********************/
+
+/****** USER PROFILE ********/
+.is-ripe {
+  background-color: $theme-good;
+}
+.is-rotten {
+  background-color: $theme-bad;
+}
+
+
+.critique-box {
+  background-color: $theme-light;
+}
+.critique-subject {
+  font-size: 2em;
+}
+
+.critique-content {
+  font-size: 1.25em;
+}
+
+.mini-avatar-border {
+  border: 1px solid white;
+}
+
+.most-recent-critique-header {
+  font-size: 2.75em;
+  color: white;
+}
+
+.white-text {
+  color: white;
+}
+
+.sorting-options {
+  color: white;
+  font-size: 1.2em;
+}
+
+.username-on-profile {
+  font-size: 2em;
+  color: white;
+}
+/***********************/

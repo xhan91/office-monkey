@@ -1,5 +1,5 @@
-<div class="box critique-box">
-    <article class="media message" style="background-color: <%= critique.is_ripe_banana ? "green" : "red"%>">
+<div class="box">
+    <article class="media message critique <%= critique.is_ripe_banana ? "is-ripe" : "is-rotten"%>">
       <div class="media-left">
         <p class="image is-64x64">
           <img src="<%= @user.avatar %>" alt="avatar">
