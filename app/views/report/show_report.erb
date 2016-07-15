@@ -1,67 +1,62 @@
-<!-- <section class="hero is-primary">
-  <div class="hero-body">
-    <div class="container">
-      <h1 class="title">
-        Employee Wellness Report
-      </h1>
-      <h2 class="subtitle">
-
-      </h2>
-    </div>
-  </div>
-</section>
- -->
-
 <section class="section">
-  <div class="container">
-
-
-
-<article class="message">
+<div class="container">
+<article class="message is-info">
   <div class="message-header">
     <h2 class="is-medium">Amount of postive comments per subject</h2>
   </div>
   <div class="message-body">
-    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id') %>
+    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id'), library: {backgroundColor: "#EDF7FC"} %>
   </div>
 </article>
+</div>
+</section>
 
-
-<article class="message">
+<section class="section">
+<div class="container">
+<article class="message is-info">
   <div class="message-header">
     <h2>Amount of negative comments per subject</h2>
   </div>
   <div class="message-body">
-    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id'), colors: ["DC3912"] %>
+    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id'), colors: ["DC3912"], library: {backgroundColor: "#EDF7FC"} %>
   </div>
 </article>
+</div>
+</section>
 
-<article class="message">
+<section class="section">
+<div class="container">
+<article class="message is-info">
   <div class="message-header">
     <h2>Most Discussed Subjects</h2>
   </div>
   <div class="message-body">
-    <%= pie_chart Subject.joins(:critiques).group('subjects.name').count('critiques.subject_id') %>
+    <%= pie_chart Subject.joins(:critiques).group('subjects.name').count('critiques.subject_id'), library: {backgroundColor: "#EDF7FC", is3D: true} %>
   </div>
 </article>
+</div>
+</section>
 
-
+<section class="section">
+<div class="container">
 <div class="columns is-multiline is-mobile">
 <% Subject.all.each do |subject| %>
 		<div class="column is-half">
-			<article class="message">
+			<article class="message is-info">
  			 <div class="message-header">
 				<h3>Satisfaction with: <%= subject.name %></h3>
 			 </div>
   	<div class="message-body">
     <a href="/report/<%= subject.id %>">
-			<%= pie_chart Subject.joins(:critiques).where("subjects.name = '#{subject.name}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"] %>
+			<%= pie_chart Subject.joins(:critiques).where("subjects.name = '#{subject.name}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"], library: {backgroundColor: "#EDF7FC", is3D: true} %>
       </a>
 		</div>
 </article>
 		</div>
 <% end %>
 </div>
+</div>
+</section>
 
     
   </div>

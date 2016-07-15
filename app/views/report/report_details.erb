@@ -1,7 +1,19 @@
+<section class="hero is-primary">
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Employee Wellness Report
+      </h1>
+      <h2 class="subtitle">
+      <%=@subject.name%>
+      </h2>
+    </div>
+  </div>
+</section>
 <div class="columns is-mobile">
 <div class="column is-half is-offset-one-quarter">
-	<h3>Satisfaction with: <%=@subject.name%></h3>
-	<%= pie_chart Subject.joins(:critiques).where("subjects.id = '#{@subject_id}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"], library: {backgroundColor: "#f5f7fa"} %>
+	<%= pie_chart Subject.joins(:critiques).where("subjects.id = '#{@subject_id}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"], library: {legend: {position: "none"}, backgroundColor: "#f5f7fa"}%>
+	<!-- , library: {backgroundColor: "#f5f7fa"} -->
 </div>
 </div>
 
