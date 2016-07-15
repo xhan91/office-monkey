@@ -56,20 +56,17 @@
 <nav class="nav is-warning brown-background">
   <div class="container">
     <div class="nav-left nav-menu">
-      <label class="nav-item white-text">
-        Sort By
-      </label>
       <a class="nav-item">
-        <p class="white-text">Subject</p>
+        <p class="sorting-options">Subject</p>
       </a>
-      <a class="nav-item white-text">
-        <p class="white-text">Ripe Reviews</p>
+      <a class="nav-item">
+        <p class="sorting-options">Ripe Reviews</p>
       </a>
-      <a class="nav-item white-text">
-        <p class="white-text">Rotten Reviews</p>
+      <a class="nav-item">
+        <p class="sorting-options">Rotten Reviews</p>
       </a>
-      <a class="nav-item white-text">
-        <p class="white-text">Upvote Count</p>
+      <a class="nav-item">
+        <p class="sorting-options">Upvote Count</p>
       </a>
     </div>
   </div>
@@ -86,20 +83,20 @@
         </p>
       </div>
       <div class="media-content">
-        <div class="content" style="color: white">
-          <p>
-            <strong><%= @user.username %></strong> <small><%= critique.created_at %></small>
-            <br/>
-            <%= critique.content %>
-          </p>
+        <div class="content white-text">
+          <strong class="white-text critique-subject"><%= critique.subject.name %></strong> 
+          <br>
+          <p class="critique-content"><%= critique.content %></p>
+          <br>
+          <small><%= critique.created_at %></small>
+          <nav class="level">
+            <div class="level-left">
+              <a class="level-item" style="color: yellow">
+                <%= Vote.where(critique: critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
+              </a>
+            </div>
+          </nav>
         </div>
-        <nav class="level">
-          <div class="level-left">
-            <a class="level-item" style="color: yellow">
-              <%= Vote.where(critique: critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
-            </a>
-          </div>
-        </nav>
       </div>
     </article>
   <% end %>
