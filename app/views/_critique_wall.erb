@@ -1,0 +1,27 @@
+<div class="box">
+  <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
+    <div class="media-left">
+      <p class="image is-64x64">
+        <img src="<%= critique.user.avatar %>" alt="avatar">
+      </p>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= critique.user.username %></strong> <small><%= critique.created_at %></small>
+          <br/>
+          <%= critique.content %>
+        </p>
+      </div>
+      <nav class="level">
+        <a class="level-item vote-btn button is-danger <%= "is-outlined" if Vote.where(user: current_user).where(critique: critique).empty? %>">
+          <form>
+            <input type="hidden" class="user_id" value="<%= current_user.id %>">
+            <input type="hidden" class="critique_id" value="<%= critique.id %>">
+          </form>
+          <span class="vote-count"><%= Vote.where(critique: critique).count %></span> <span class="icon"><i class="fa fa-heart"></i></span>
+        </a>
+      </nav>
+    </div>
+  </article>
+</div>

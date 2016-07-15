@@ -16,5 +16,22 @@ $(document).ready(function() {
         });
     });
 
+    // post new critique with ajax
+    $("form.new-post-form").on("submit", function(event) {
+        event.preventDefault();
+        var form = $(this);
+
+        $.ajax({
+            method: form.attr("method"),
+            url: form.attr("action"),
+            data: form.serialize(),
+            success: function (data) {
+                var wall = $(".critique-wall");
+                wall.prepend(data);
+                // wall.find(".box").fadeIn();
+            }
+        });
+    });
+
     // something else
 });
