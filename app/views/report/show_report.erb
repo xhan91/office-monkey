@@ -11,19 +11,38 @@
   </div>
 </section>
 
+<article class="message">
+  <div class="message-header">
+    <h2 class="is-medium">Amount of postive comments per subject</h2>
+  </div>
+  <div class="message-body">
+    <%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id') %>
+  </div>
+</article>
 
 
+<article class="message">
+  <div class="message-header">
+    <h2>Amount of negative comments per subject</h2>
+  </div>
+  <div class="message-body">
+    <%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id') %>
+  </div>
+</article>
 
-<h2 class="is-medium">Amount of postive comments per subject</h2>
-<%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id') %>
-<h2>Amount of negative comments per subject</h2>
-<%= bar_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id') %>
-<h2>Most Discussed Subjects</h2>
-<%= pie_chart Subject.joins(:critiques).group('subjects.name').count('critiques.subject_id') %>
+<article class="message">
+  <div class="message-header">
+    <h2>Most Discussed Subjects</h2>
+  </div>
+  <div class="message-body">
+    <%= pie_chart Subject.joins(:critiques).group('subjects.name').count('critiques.subject_id') %>
+  </div>
+</article>
+
 
 <div class="columns is-multiline is-mobile">
 <% Subject.all.each do |subject| %>
-		<div class="column is-half">
+		<div class="column is-one-third">
 			<article class="message">
  			 <div class="message-header">
 				<h3>Satisfaction with: <%= subject.name %></h3>
