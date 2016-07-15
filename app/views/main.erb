@@ -23,12 +23,12 @@
                   </p>
                 </div>
                 <nav class="level">
-                  <a class="level-item vote-btn">
+                  <a class="level-item vote-btn button is-danger <%= "is-outlined" if Vote.where(user: current_user).where(critique: critique).empty? %>">
                     <form>
-                      <input type="hidden" id="user_id" value="<%= current_user.id %>">
-                      <input type="hidden" id="critique_id" value="<%= critique.id %>">
+                      <input type="hidden" class="user_id" value="<%= current_user.id %>">
+                      <input type="hidden" class="critique_id" value="<%= critique.id %>">
                     </form>
-                    <span id="vote-count"><%= Vote.where(critique: critique).count %></span> <span class="icon <%= "icon-voted" if Vote.where(user: current_user).where(critique: critique).first %>"><i class="fa fa-heart"></i></span>
+                    <span class="vote-count"><%= Vote.where(critique: critique).count %></span> <span class="icon"><i class="fa fa-heart"></i></span>
                   </a>
                 </nav>
               </div>
