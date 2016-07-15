@@ -5,12 +5,17 @@ helpers do
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
 
+  def logged_in?
+    current_user ? true : false
+  end
+
 end
 
 # Gets the main page of Office Monkey (Critique Wall)
 require 'chartkick'
 get '/' do
   session[:user_id] = 2
+  @has_title = false
   @critiques = Critique.all.order(created_at: :desc).limit(10)
   erb :main
 end
@@ -26,6 +31,7 @@ end
 
 # Gets a user's profile page
 get '/users/:user_id' do
+  @has_title = false
   @user = User.find(2)
   @most_recent_critique = @user.critiques.order(created_at: :desc).first
 
@@ -47,11 +53,6 @@ get '/users/:user_id' do
 end
 
 ###### CRITIQUE WALL ###########
-
-# Gets a page which enables a user to post to the critique wall
-get '/critiques/new' do
-
-end
 
 # Posts a new critique to the Critique Wall
 post '/critiques' do
@@ -93,6 +94,7 @@ end
 ###### ANALYSIS PAGE ###########
 
 get '/report' do
+  @has_title = true
 	erb :'report/show_report'
 end
 

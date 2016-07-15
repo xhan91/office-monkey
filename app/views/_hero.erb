@@ -1,3 +1,7 @@
+<section class="hero is-info is-bold">
+  <div class="hero-head">
+    
+
 <nav class="nav">
   <div class="container">
     <div class="nav-left">
@@ -9,16 +13,37 @@
     </div>
     <div class="nav-right nav-menu">
       <span class="nav-item">
-        <a href="/report" class="button">
-          Report
-        </a>
-        <a class="button">
-          Log in
-        </a>
-        <a class="button ">
-          <span>Sign up</span>
-        </a>
+        <% if logged_in? %>
+          <a href="/report" class="button is-success">
+            Report
+          </a>
+          <a href="#" class="button">
+            Log out
+          </a>
+        <% else %>
+          <a class="button">
+            Log in
+          </a>
+          <a class="button ">
+            <span>Sign up</span>
+          </a>
+        <% end %>
       </span>
     </div>
   </div>
 </nav>
+  <% if @has_title %>
+  </div>
+  <div class="hero-body">
+    <div class="container">
+      <h1 class="title">
+        Employee Wellness Report
+      </h1>
+      <h2 class="subtitle">
+
+      </h2>
+    </div>
+  </div>
+  <% end %>
+
+</section>
