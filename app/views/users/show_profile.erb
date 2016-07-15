@@ -1,121 +1,58 @@
+<!-- USER DETAILS SECTION -->
 <section class="section yellow-background">
   <div class="container">
     <div class="tile is-ancestor">
-
-    <!--- CONTAINS THE USER AVATAR AND USERNAME -->
-      <div class="tile is-parent">
-        <div class="card">
-          <div class="card-image">
-            <figure class="image is-4by3">
-              <img src="<%= @user.avatar %>" alt="">
-            </figure>
-          </div>
-          <div class="card-content brown-background">
-            <div class="media">
-              <div class="media-left">
-                <figure class="image is-32x32">
-                  <img class="mini-avatar-border" src="<%= @user.avatar %>"" alt="Image">
-                </figure>
-              </div>
-              <div class="media-content">
-                <p class="title is-5 yellow-text"><%= @user.username %></p>
-                <p class="subtitle is-6 yellow-text"><%= @user.critiques.count %> critiques</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <!--- CONTAINS THE USER AVATAR AND USERNAME -->
+      <%= erb :'users/_avatar_card', locals: { user: @user } %>
 
       <!-- CONTAINS THE MOST RECENT CRITIQUE -->
-      <div class="tile is-parent">
-        <div class="card is-fullwidth brown-background">
-          <header class="card-header">
-            <p class="card-header-title most-recent-critique-header">
-              Most Recent Critique
-            </p>
-          </header>
-          <div class="card-content">
-            <article class="media message" style="background-color: <%= @most_recent_critique.is_ripe_banana ? "green" : "red"%>">
-              <div class="media-left">
-                <p class="image is-64x64">
-                <img src="<%= @user.avatar %>" alt="avatar">
-                </p>
-              </div>
-              <div class="media-content">
-                <div class="content white-text">
-                  <strong class="white-text critique-subject"><%= @most_recent_critique.subject.name %></strong> 
-                  <br>
-                  <p class="critique-content"><%= @most_recent_critique.content %></p>
-                  <br>
-                  <small><%= @most_recent_critique.created_at %></small>
-                  <nav class="level">
-                    <div class="level-left">
-                      <a class="level-item" style="color: yellow">
-                        <%= Vote.where(critique: @most_recent_critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
-                      </a>
-                    </div>
-                  </nav>
-                </div>
-              </div>
-            </article> 
-          </div>
-        </div>
-      </div>
-
-
+      <%= erb :'users/_most_recent_critique', locals: { most_recent_critique: @most_recent_critique } %>
     </div>
   </div>
 </section>
-
-<!-- NAVBAR WITH SORTING BUTTONS -->
-<nav class="nav is-warning brown-background">
-  <div class="container">
-    <div class="nav-left nav-menu">
-      <span class="nav-item">
-          <a class="button yellow-background">
-            <span class="sorting-options" style="color: black">Subject</span>
-          </a>
-          <a class="button yellow-background">
-            <span class="sorting-options" style="color: black">Ripe Reviews</span>
-          </a>
-          <a class="button yellow-background">
-            <span class="sorting-options" style="color: black">Rotten Reviews</span>
-          </a>
-          <a class="button yellow-background">
-            <span class="sorting-options" style="color: black">Upvote Count</span>
-          </a>
-      </span>
-    </div>
-  </div>
-</nav>
 
 <!-- CRITIQUE SECTION -->
-<section class="section yellow-background">
-  <div class="container">
-  <% @user.critiques.each do |critique| %>
-    <article class="media message" style="background-color: <%= critique.is_ripe_banana ? "green" : "red"%>">
-      <div class="media-left">
-        <p class="image is-64x64">
-          <img src="<%= @user.avatar %>" alt="avatar">
-        </p>
+<div class="columns">
+
+  <!-- CRITIQUES-->
+  <div class="column is-two-thirds yellow-background">
+    <section class="section yellow-background">
+      <div class="container">
+      <% @user_critiques.each do |critique| %>
+      <%= erb :'users/_critique', locals: { critique: critique } %>
+      <% end %>
       </div>
-      <div class="media-content">
-        <div class="content white-text">
-          <strong class="white-text critique-subject"><%= critique.subject.name %></strong> 
-          <br>
-          <p class="critique-content"><%= critique.content %></p>
-          <br>
-          <small><%= critique.created_at %></small>
-          <nav class="level">
-            <div class="level-left">
-              <a class="level-item" style="color: yellow">
-                <%= Vote.where(critique: critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
-              </a>
-            </div>
-          </nav>
+    </section>
+  </div>
+
+  <!-- SORTING FORM -->
+  <div class="column">
+    <section class="section">
+      <div class="message is-info">
+        <div class="message-header">
+          View Critiques By...
+        </div>
+        <div class="message-body">
+          <form method="POST" action="/users/<%= @user.id %>">
+            <input type="hidden" name="user_id" value="@user.id">
+            <p class="control">
+              <span class="select">
+                <select name="filter_criteria">
+                    <option value="subject">Subject</option>
+                  
+                    <option value="ripe_reviews">Ripe Reviews</option>
+                  
+                    <option value="rotten_reviews">Rotten Reviews</option>    
+                </select>
+              </span>
+            </p>
+            <p class="control">
+              <button class="button is-success">Select</button>
+            </p>
+          </form>
         </div>
       </div>
-    </article>
-  <% end %>
+    </section>
   </div>
-</section>
+
+</div>
