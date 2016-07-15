@@ -1,8 +1,8 @@
-<div class="container">
+<section class="section">
+  <div class="container">
+
   <div class="columns">
     <div class="column is-two-thirds">
-
-
       <section class="section critique-wall">
       	<% @critiques.each do |critique| %>
           <%= erb :_critique_wall, locals: { critique: critique } %>
@@ -46,7 +46,8 @@
         </div>
       </div>
       </section>
-
+      
+      <% if logged_in? %>
       <section class="section">
       <div class="message is-info">
       <div class="message-header">
@@ -79,7 +80,9 @@
             <textarea name="content" class="textarea not-resizable"></textarea>
           </p>
           <p class="control">
-            <button class="button is-success">Post</button>
+            <div class="level">
+              <button class="button is-success level-item">Post</button>
+            </div>
           </p>
         </form>
         </div>
@@ -93,6 +96,11 @@
           Most Critiqued
         </div>
       </section>
+      <% end %>
+
     </div>
   </div>
-</div>
+
+    
+  </div>
+</section>
