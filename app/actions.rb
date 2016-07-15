@@ -34,7 +34,7 @@ end
 ###### CRITIQUE WALL ###########
 
 # Gets a page which enables a user to post to the critique wall
-get '/critques/new' do
+get '/critiques/new' do
 
 end
 
@@ -62,9 +62,18 @@ delete '/critiques/:critique_id' do
 
 end
 
-# Adds a new upvote to the critque
-post '/upvotes/:critique_id/new' do
+# Adds a new upvote to the critique
+# post '/upvotes/:critique_id/new' do
+post '/votes' do
   # Redirect to main page
+  user = User.find params[:user_id]
+  critique = Critique.find params[:critique_id]
+  if vote = Vote.where(user: user).where(critique: critique).first
+    vote.destroy
+  else
+    Vote.create(user: user, critique: critique)
+  end
+  "#{critique.votes.count}"
 end
 
 ###### ANALYSIS PAGE ###########

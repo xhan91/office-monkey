@@ -7,6 +7,7 @@
       <% User.all.each do |user| %>
       	<% user.critiques.each do |critique| %>
       		<% if critique.created_at > Date.today-2%>
+          <div class="box">
             <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
               <div class="media-left">
                 <p class="image is-64x64">
@@ -22,20 +23,17 @@
                   </p>
                 </div>
                 <nav class="level">
-                  <div class="level-left">
-                    <a class="level-item">
-                      <span class="icon "><i class="fa fa-reply"></i></span>
-                    </a>
-                    <a class="level-item">
-                      <span class="icon "><i class="fa fa-retweet"></i></span>
-                    </a>
-                    <a class="level-item">
-                      <%= Vote.where(critique: critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
-                    </a>
-                  </div>
+                  <a class="level-item vote-btn">
+                    <form>
+                      <input type="hidden" id="user_id" value="<%= current_user.id %>">
+                      <input type="hidden" id="critique_id" value="<%= critique.id %>">
+                    </form>
+                    <span id="vote-count"><%= Vote.where(critique: critique).count %></span> <span class="icon <%= "icon-voted" if Vote.where(user: current_user).where(critique: critique).first %>"><i class="fa fa-heart"></i></span>
+                  </a>
                 </nav>
               </div>
             </article>
+            </div>
       		<% end %>
       	<% end %>
       <% end %>
@@ -44,6 +42,47 @@
 
     <div class="column">
       <section class="section">
+      <div class="message is-info">
+        <div class="message-body">
+          <div class="card-content">
+            <div class="columns">
+              <div class="column is-one-third">
+                <p class="image is-1by1">
+                  <img src="<%= current_user.avatar %>" alt="avatar">
+                </p>
+              </div>
+              <div class="column">
+                <div class="box">
+                  <h1 class="title"><%= current_user.username %></h1>
+                  <h2 class="subtitle">This is an angry monkey.</h2>
+                </div>
+              </div>
+            </div>
+            <div class="level">
+              <div class="level-item has-text-centered">
+                <p class="heading">POSTS</p>
+                <p class="title"><%= current_user.critiques.count %></p>
+              </div>
+              <div class="level-item has-text-centered">
+                <p class="heading">VOTED</p>
+                <p class="title"><%= current_user.critiques.inject(0) {|sum, critique| sum + critique.votes.count } %></p>
+              </div>
+              <div class="level-item has-text-centered">
+                <p class="heading">VOTES</p>
+                <p class="title"><%= current_user.votes.count %></p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </section>
+
+      <section class="section">
+      <div class="message is-info">
+      <div class="message-header">
+        Post your feedback!
+      </div>
+      <div class="message-body">
         <form method="POST" action="/critiques">
           <input type="hidden" name="user_id" value="<%= current_user.id %>">
           <label class="label">Banana</label>
@@ -73,6 +112,8 @@
             <button class="button is-success">Post</button>
           </p>
         </form>
+        </div>
+        </div>
       </section>
       <section class="section">
         <div>

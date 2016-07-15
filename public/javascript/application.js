@@ -2,5 +2,17 @@
 //= require chartkick
 $(document).ready(function() {
 
-  // See: http://docs.jquery.com/Tutorials:Introducing_$(document).ready()
+    // voting up and down in main page
+    $(".vote-btn").click(function() {
+        var tmp = $(this)
+        $.post("/votes", { 
+            user_id: $(this).find("#user_id").val(), 
+            critique_id: $(this).find("#critique_id").val() }, 
+            function(result) {
+                tmp.find("#vote-count").text(result);
+                tmp.find(".icon").toggleClass("icon-voted");
+        });
+    });
+
+    // something else
 });
