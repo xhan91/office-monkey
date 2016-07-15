@@ -11,6 +11,7 @@ end
 require 'chartkick'
 get '/' do
   session[:user_id] = 2
+  @critiques = Critique.all.order(created_at: :desc).limit(10)
   erb :main
 end
 
@@ -58,15 +59,14 @@ post '/critiques' do
   subject = Subject.find params[:subject_id]
   is_ripe_banana = (params[:banana] == "true")
   content = params[:content]
-  if critique = Critique.create(
+  critique = Critique.create(
     user: user,
     subject: subject,
     is_ripe_banana: is_ripe_banana,
     content: content)
-    session[:flash] = "Post a new feedback successfully!"
-    redirect '/'
+  if request.xhr?
+    erb :_critique_wall, layout: false, locals: { critique: critique }
   else
-    session[:flash] = critique.errors.full_messages
     redirect '/'
   end
 end
