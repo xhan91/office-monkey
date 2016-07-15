@@ -27,7 +27,6 @@ end
 get '/users/:user_id' do
   @user = User.find(2)
   @most_recent_critique = @user.critiques.order(created_at: :desc).first
-  binding.pry
 
   case params[:filter_criteria]
   when "subject"
