@@ -27,18 +27,21 @@ end
 get '/users/:user_id' do
   @user = User.find(2)
   @most_recent_critique = @user.critiques.order(created_at: :desc).first
-
-  if params[:filter_criteria]
-    @user_critiques = @user.critiques.order(:subject_id)
+  binding.pry
+  case params[:filter_criteria]
+  when "subject"
+      @user_critiques = @user.critiques.order(:subject_id)
+  when "ripe_reviews"
+      @user_critiques = @user.critiques.where(is_ripe_banana: true).order(created_at: :desc)
+  when "rotten_reviews"
+      @user_critiques = @user.critiques.where(is_ripe_banana: false).order(created_at: :desc)
   else
     @user_critiques = @user.critiques.order(created_at: :desc)
   end
 
-  erb :'/users/show_profile'
-end
+  params.delete(:filter_criteria)
 
-post '/users/:user_id' do
-  redirect '/users/:user_id'
+  erb :'/users/show_profile'
 end
 
 ###### CRITIQUE WALL ###########
@@ -87,11 +90,6 @@ post '/votes' do
 end
 
 ###### ANALYSIS PAGE ###########
-
-# Gets the analysis page for all user critiques
-get '/analysis' do
-
-end
 
 get '/report' do
 	erb :'report/show_report'
