@@ -18,8 +18,12 @@
   color: yellow;
   font-size: 1.75em;
 }
+/***********************/
 
 /****** USER PROFILE ********/
+.critique-box {
+  background-color: #52371a;
+}
 .critique-subject {
   font-size: 2em;
 }
@@ -46,6 +50,16 @@
   font-size: 1.2em;
 }
 
+.username-on-profile {
+  font-size: 2em;
+  color: yellow;
+}
+
 .yellow-text {
   color: yellow;
+}
+/***********************/
+
+.icon-voted {
+  color: red;
 }

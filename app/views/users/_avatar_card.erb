@@ -1,0 +1,22 @@
+<div class="tile is-parent">
+  <div class="card">
+    <div class="card-image">
+      <figure class="image is-4by3">
+        <img src="<%= @user.avatar %>" alt="">
+      </figure>
+    </div>
+    <div class="card-content brown-background">
+      <div class="media">
+        <div class="media-left">
+          <figure class="image is-32x32">
+            <img class="mini-avatar-border" src="<%= user.avatar %>"" alt="Image">
+          </figure>
+        </div>
+        <div class="media-content">
+          <p class="title username-on-profile"><%= user.username %></p>
+          <p class="subtitle is-6 yellow-text"><%= user.critiques.count %> critiques</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

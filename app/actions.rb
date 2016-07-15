@@ -26,8 +26,19 @@ end
 # Gets a user's profile page
 get '/users/:user_id' do
   @user = User.find(2)
-  @most_recent_critique = @user.critiques.order(:created_at).first
+  @most_recent_critique = @user.critiques.order(created_at: :desc).first
+
+  if params[:filter_criteria]
+    @user_critiques = @user.critiques.order(:subject_id)
+  else
+    @user_critiques = @user.critiques.order(created_at: :desc)
+  end
+
   erb :'/users/show_profile'
+end
+
+post '/users/:user_id' do
+  redirect '/users/:user_id'
 end
 
 ###### CRITIQUE WALL ###########
