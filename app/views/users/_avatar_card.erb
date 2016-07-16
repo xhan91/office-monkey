@@ -14,8 +14,8 @@
               </p>
             </div>
             <div class="column">
-              <div class="box">
-                <h1 class="title username-avatar-card"><%= user.username %></h1>
+              <div class="box <%= is_happy_user ? "avatar-card-happy" : "avatar-card-angry" %>">
+                <h1 class="title avatar-card-username"><%= user.username %></h1>
                 <h2 class="subtitle">
                   <% if  is_happy_user %>
                     is a happy monkey
