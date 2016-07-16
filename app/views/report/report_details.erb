@@ -1,4 +1,4 @@
-<section class="hero is-primary">
+<section class="hero is-info">
   <div class="hero-body">
     <div class="container">
       <h1 class="title">
@@ -10,13 +10,14 @@
     </div>
   </div>
 </section>
+
 <div class="columns is-mobile">
 <div class="column is-half is-offset-one-quarter">
-	<%= pie_chart Subject.joins(:critiques).where("subjects.id = '#{@subject_id}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"], library: {legend: {position: "none"}, backgroundColor: "#f5f7fa"}%>
-	<!-- , library: {backgroundColor: "#f5f7fa"} -->
+	<%= pie_chart Subject.joins(:critiques).where("subjects.id = '#{@subject_id}'").group('critiques.is_ripe_banana').count, colors: ["DC3912", "3366CC"], library: {legend: {position: "right"}, backgroundColor: "#f5f7fa", is3D: true}%>
 </div>
 </div>
 
+<div class="container">
 <% Critique.where(subject_id: @subject_id).each do |critique| %>
 	<div class="box">
   <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
@@ -44,4 +45,5 @@
   </article>
 </div>
 <% end %>
+</div>
 
