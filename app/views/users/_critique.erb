@@ -9,13 +9,12 @@
     </div>
     <div class="media-content">
       <div class="content">
-        <p>
-          <strong><%= critique.subject.name %></strong>
+          <strong class="critique-subject"><%= critique.subject.name %></strong>
           <br/>
-          <%= critique.content %>
+          <span class="critique-content"><%= critique.content %></span>
           <br/>
-          <small><%= critique.created_at %></small>
-        </p>
+          <br/>
+          <span><%= critique.created_at %></span>
       </div>
     </div>
   </article>

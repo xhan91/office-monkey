@@ -32,7 +32,7 @@ end
 # Gets a user's profile page
 get '/users/:user_id' do
   @has_title = false
-  @user = User.find(2)
+  @user = User.find(params[:user_id])
   @most_recent_critique = @user.critiques.order(created_at: :desc).first
 
   case params[:filter_criteria]
