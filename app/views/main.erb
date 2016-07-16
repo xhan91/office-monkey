@@ -1,14 +1,6 @@
 <section class="section">
   <div class="container">
-
   <div class="columns">
-    <div class="column is-two-thirds">
-      <section class="section critique-wall">
-      	<% @critiques.each do |critique| %>
-          <%= erb :_critique_wall, locals: { critique: critique } %>
-        <% end %>
-      </section>
-    </div>
 
     <div class="column">
       <section class="section">
@@ -81,7 +73,7 @@
           </p>
           <p class="control">
             <div class="level">
-              <button class="button is-success level-item">Post</button>
+              <button class="button is-info level-item">Post</button>
             </div>
           </p>
         </form>
@@ -99,8 +91,35 @@
       <% end %>
 
     </div>
-  </div>
 
-    
+    <div class="column is-two-thirds">
+      <section class="section critique-wall">
+<div class="box">
+
+        <form method="get" action="/critiques/search">
+          <p class="control has-addons">
+            <span class="select">
+              <select name="subject_id">
+                <option value="all">All</option>
+                <% Subject.all.each do |subject| %>
+                  <option value="<%= subject.id %>" ><%= subject.name %></option>
+                <% end %>
+              </select>
+            </span>
+            <input class="input is-expanded" name="search_string" type="text" placeholder="Find a feedback">
+            <button class="button is-info">
+              Search
+            </button>
+          </p>
+        </form>
+</div>
+
+        <% @critiques.each do |critique| %>
+          <%= erb :_critique_wall, locals: { critique: critique } %>
+        <% end %>
+      </section>
+    </div>
+
+  </div>    
   </div>
 </section>

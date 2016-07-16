@@ -9,23 +9,25 @@
         <img src="/src/monkey.png" alt="logo">
         <strong class="brand-name">OfficeMonkey</strong>
       </a>
-
     </div>
     <div class="nav-right nav-menu">
       <span class="nav-item">
         <% if logged_in? %>
-          <a href="/report" class="button is-success">
-            Report
+          <a href="/users/<%= current_user.id %>" class="button is-success">
+            Profile
+          </a>
+          <a href="/report" class="button">
+            Analysis
           </a>
           <a href="#" class="button">
             Log out
           </a>
         <% else %>
-          <a class="button">
+          <a class="button is-success">
             Log in
           </a>
-          <a class="button ">
-            <span>Sign up</span>
+          <a class="button is-success">
+            Sign up
           </a>
         <% end %>
       </span>

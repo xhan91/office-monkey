@@ -72,6 +72,17 @@ post '/critiques' do
   end
 end
 
+# Search for critiques
+get '/critiques/search' do
+  result = Critique.all
+  if params[:subject_id] != "all"
+    result = result.where(subject_id: params[:subject_id])
+  end
+  search = "%#{params[:search_string]}%"
+  @critiques = result.where("content LIKE ?", search).order(created_at: :desc)
+  erb :main
+end
+
 # Deletes a critique from the Critique Wall
 delete '/critiques/:critique_id' do
 
