@@ -1,17 +1,19 @@
-<nav style="background-color: #21BAE0">
+<nav class="filtering-bar">
   <form method="GET" action="/users/<%= @user.id %>">
     <p class="control has-addons has-addons-centered">
       <span class="select">
-        <select name="filter_criteria">
-          <option value="subject">Subject</option>
+        <select style="font-size: 1.5em" name="filter_criteria">
+          <option value-"" disabled selected>Show critiques by...</option>
+          <option value="recently_posted">Recently Posted</option>  
           <option value="ripe_reviews">Ripe Reviews</option>
-          <option value="rotten_reviews">Rotten Reviews</option>
-          <option value="recently_posted">Recently Posted</option>    
+          <option value="rotten_reviews">Rotten Reviews</option>  
+          <option value="subject">Subject</option>
         </select>
       </span>
-      <button class="button is-success">
+      <button class="button filtering-control is-success">
         Go
       </button>
     </p>
   </form>
 </nav>
+

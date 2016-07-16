@@ -4,7 +4,6 @@
     <div class="tile is-ancestor">
       <!--- USER AVATAR AND USERNAME -->
       <%= erb :'users/_avatar_card', locals: { user: @user } %>
-
       <!-- MOST RECENT CRITIQUE -->
       <%= erb :'users/_most_recent_critique', locals: { most_recent_critique: @most_recent_critique } %>
 
@@ -17,9 +16,7 @@
 
 <!-- USER CRITIQUES SECTION -->
 <section class="section">
-  <div class="section">
-    <% @user_critiques.each do |critique| %>
-    <%= erb :'users/_critique', locals: { critique: critique } %>
-    <% end %>
-  </div>
+  <% @user_critiques.each do |critique| %>
+  <%= erb :'users/_critique', locals: { critique: critique } %>
+  <% end %>
 </section>
