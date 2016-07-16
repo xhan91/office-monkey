@@ -1,6 +1,6 @@
-<% ripe_review_count = user.critiques.where(is_ripe_banana: true).count %>
-<% rotten_review_count = user.critiques.where(is_ripe_banana: false).count %>
-<% is_happy_user = (ripe_review_count >  rotten_review_count) %>
+<% ripe_count = user.critiques.where(is_ripe_banana: true).count %>
+<% rotten_count = user.critiques.where(is_ripe_banana: false).count %>
+<% is_happy_user = (ripe_count >  rotten_count) %>
 
 <div class="tile is-parent">
   <section class="section">
@@ -28,12 +28,12 @@
           </div>
           <div class="level">
             <div class="level-item has-text-centered">
-              <p class="heading review-type-heading">Ripe Reviews</p>
-              <p class="title review-type-count"><%= ripe_review_count %></p>
+              <p class="heading review-type-heading">Ripe</p>
+              <p class="title review-type-count"><%= ripe_count %></p>
             </div>
             <div class="level-item has-text-centered">
-              <p class="heading review-type-heading">Rotten Reviews</p>
-              <p class="title review-type-count"><%= rotten_review_count %></p>
+              <p class="heading review-type-heading">Rotten</p>
+              <p class="title review-type-count"><%= rotten_count %></p>
             </div>
           </div>
         </div>
