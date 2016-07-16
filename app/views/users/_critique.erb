@@ -1,27 +1,22 @@
 <div class="box">
-    <article class="media message critique <%= critique.is_ripe_banana ? "is-ripe" : "is-rotten"%>">
-      <div class="media-left">
-        <p class="image is-64x64">
-          <img src="<%= @user.avatar %>" alt="avatar">
+  <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
+    <div class="media-left">
+      <a href="users/<%= critique.user_id %>">
+      <p class="image is-64x64">
+        <img src="<%= critique.user.avatar %> alt="avatar">
+      </p>
+      </a>
+    </div>
+    <div class="media-content">
+      <div class="content">
+        <p>
+          <strong><%= critique.subject.name %></strong>
+          <br/>
+          <%= critique.content %>
+          <br/>
+          <small><%= critique.created_at %></small>
         </p>
       </div>
-
-      <div class="media-content">
-        <div class="content white-text">
-          <strong class="white-text critique-subject"><%= critique.subject.name %></strong> 
-          <br>
-          <p class="critique-content"><%= critique.content %></p>
-          <br>
-          <small><%= critique.created_at %></small>
-          <nav class="level">
-            <div class="level-left">
-              <a class="level-item" style="color: yellow">
-                <%= Vote.where(critique: critique).count %> <span class="icon"><i class="fa fa-heart"></i></span>
-              </a>
-            </div>
-          </nav>
-        </div>
-      </div>
-      
-    </article>
+    </div>
+  </article>
 </div>
