@@ -11,6 +11,15 @@
 
 /***********************/
 /****** USER PROFILE ********/
+.avatar-card-angry {
+  box-shadow: 2px 2px 5px 0.5px #ED6C63; }
+
+.avatar-card-happy {
+  box-shadow: 5px 5px 5px 0.5px #97CD76; }
+
+.avatar-card-username {
+  font-size: 2.5em; }
+
 .critique-ripe:hover {
   box-shadow: 5px 5px 5px 0.5px #97CD76; }
 
@@ -38,9 +47,6 @@
 
 .review-type-count {
   font-size: 2em; }
-
-.username-avatar-card {
-  font-size: 2.5em; }
 
 /***********************/
 
