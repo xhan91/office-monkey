@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box <%= critique.is_ripe_banana ? "critique-ripe" : "critique-rotten"%>">
   <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
     <div class="media-left">
       <a href="users/<%= critique.user_id %>">

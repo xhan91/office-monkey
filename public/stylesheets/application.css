@@ -11,6 +11,12 @@
 
 /***********************/
 /****** USER PROFILE ********/
+.critique-ripe:hover {
+  box-shadow: 5px 5px 5px 0.5px #97CD76; }
+
+.critique-rotten:hover {
+  box-shadow: 2px 2px 5px 0.5px #ED6C63; }
+
 .critique-content {
   font-size: 1.17em; }
 
