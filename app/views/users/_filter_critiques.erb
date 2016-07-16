@@ -1,23 +1,17 @@
-<div class="message is-info">
-  <div class="message-header">
-    View Critiques By...
-  </div>
-  <div class="message-body">
-    <form method="GET" action="/users/<%= @user.id %>">
-      <input type="hidden" name="user_id" value="@user.id">
-      <p class="control">
-        <span class="select">
-          <select name="filter_criteria">
-              <option value="subject">Subject</option>
-              <option value="ripe_reviews">Ripe Reviews</option>
-              <option value="rotten_reviews">Rotten Reviews</option>
-              <option value="recently_posted">Recently Posted</option>    
-          </select>
-        </span>
-      </p>
-      <p class="control">
-        <button class="button is-success">Select</button>
-      </p>
-    </form>
-  </div>
-</div>
+<nav style="background-color: #21BAE0">
+  <form method="GET" action="/users/<%= @user.id %>">
+    <p class="control has-addons has-addons-centered">
+      <span class="select">
+        <select name="filter_criteria">
+          <option value="subject">Subject</option>
+          <option value="ripe_reviews">Ripe Reviews</option>
+          <option value="rotten_reviews">Rotten Reviews</option>
+          <option value="recently_posted">Recently Posted</option>    
+        </select>
+      </span>
+      <button class="button is-success">
+        Go
+      </button>
+    </p>
+  </form>
+</nav>

@@ -1,5 +1,5 @@
 <!-- USER DETAILS SECTION -->
-<section class="section yellow-background">
+<section class="section">
   <div class="container">
     <div class="tile is-ancestor">
       <!--- USER AVATAR AND USERNAME -->
@@ -7,29 +7,19 @@
 
       <!-- MOST RECENT CRITIQUE -->
       <%= erb :'users/_most_recent_critique', locals: { most_recent_critique: @most_recent_critique } %>
+
     </div>
   </div>
 </section>
 
-<!-- CRITIQUE SECTION -->
-<div class="columns">
+<!-- FILTER CRITIQUE SELECTOR -->
+<%= erb :'/users/_filter_critiques' %>
 
-  <!-- CRITIQUES-->
-  <div class="column is-two-thirds yellow-background">
-    <section class="section yellow-background">
-      <div class="container">
-      <% @user_critiques.each do |critique| %>
-      <%= erb :'users/_critique', locals: { critique: critique } %>
-      <% end %>
-      </div>
-    </section>
+<!-- USER CRITIQUES SECTION -->
+<section class="section">
+  <div class="section">
+    <% @user_critiques.each do |critique| %>
+    <%= erb :'users/_critique', locals: { critique: critique } %>
+    <% end %>
   </div>
-
-  <!-- FILTER FORM -->
-  <div class="column">
-    <section class="section">
-      <%= erb :'/users/_filter_critiques' %>
-    </section>
-  </div>
-
-</div>
+</section>

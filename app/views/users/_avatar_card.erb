@@ -1,22 +1,42 @@
+<% @ripe_review_count = user.critiques.where(is_ripe_banana: true).count %>
+<% @rotten_review_count = user.critiques.where(is_ripe_banana: false).count %>
+
 <div class="tile is-parent">
-  <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
-        <img src="<%= @user.avatar %>" alt="">
-      </figure>
-    </div>
-    <div class="card-content brown-background">
-      <div class="media">
-        <div class="media-left">
-          <figure class="image is-32x32">
-            <img class="mini-avatar-border" src="<%= user.avatar %>"" alt="Image">
-          </figure>
-        </div>
-        <div class="media-content">
-          <p class="title username-on-profile"><%= user.username %></p>
-          <p class="subtitle is-6 yellow-text"><%= user.critiques.count %> critiques</p>
+  <section class="section">
+    <div class="message is-info">
+      <div class="message-body">
+        <div class="card-content">
+          <div class="columns">
+            <div class="column is-one-third">
+              <p class="image is-96x96">
+                <img src="<%= user.avatar %>" alt="avatar">
+              </p>
+            </div>
+            <div class="column">
+              <div class="box">
+                <h1 class="title"><%= user.username %></h1>
+                <h2 class="subtitle">
+                  <% if  @ripe_review_count >  @rotten_review_count %>
+                    Is an angry monkey.
+                  <% else %>
+                    Is a happy monkey.
+                  <% end %>
+                </h2>
+              </div>
+            </div>
+          </div>
+          <div class="level">
+            <div class="level-item has-text-centered">
+              <p class="heading">Ripe Reviews</p>
+              <p class="title"><%= @ripe_review_count %></p>
+            </div>
+            <div class="level-item has-text-centered">
+              <p class="heading">Rotten Reviews</p>
+              <p class="title"><%= @rotten_review_count %></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </div>
