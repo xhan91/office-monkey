@@ -1,9 +1,10 @@
-<% @ripe_review_count = user.critiques.where(is_ripe_banana: true).count %>
-<% @rotten_review_count = user.critiques.where(is_ripe_banana: false).count %>
+<% ripe_review_count = user.critiques.where(is_ripe_banana: true).count %>
+<% rotten_review_count = user.critiques.where(is_ripe_banana: false).count %>
+<% is_happy_user = (ripe_review_count >  rotten_review_count) %>
 
 <div class="tile is-parent">
   <section class="section">
-    <div class="message is-info">
+    <div class="message <%= is_happy_user ? "is-success" : "is-danger" %>">
       <div class="message-body">
         <div class="card-content">
           <div class="columns">
@@ -14,12 +15,12 @@
             </div>
             <div class="column">
               <div class="box">
-                <h1 class="title"><%= user.username %></h1>
+                <h1 class="title username-avatar-card"><%= user.username %></h1>
                 <h2 class="subtitle">
-                  <% if  @ripe_review_count >  @rotten_review_count %>
-                    Is an angry monkey.
+                  <% if  is_happy_user %>
+                    is a happy monkey
                   <% else %>
-                    Is a happy monkey.
+                    is an angry monkey
                   <% end %>
                 </h2>
               </div>
@@ -27,12 +28,12 @@
           </div>
           <div class="level">
             <div class="level-item has-text-centered">
-              <p class="heading">Ripe Reviews</p>
-              <p class="title"><%= @ripe_review_count %></p>
+              <p class="heading review-type-heading">Ripe Reviews</p>
+              <p class="title review-type-count"><%= ripe_review_count %></p>
             </div>
             <div class="level-item has-text-centered">
-              <p class="heading">Rotten Reviews</p>
-              <p class="title"><%= @rotten_review_count %></p>
+              <p class="heading review-type-heading">Rotten Reviews</p>
+              <p class="title review-type-count"><%= rotten_review_count %></p>
             </div>
           </div>
         </div>
