@@ -1,5 +1,12 @@
 <% new_post ||= false %>
+<% can_delete ||= false %>
 <div class="box <%= critique.is_ripe_banana ? "critique-ripe" : "critique-rotten"%>" style="<%= "display: none" if new_post %>"">
+  <% if can_delete %>
+  <form method="post" action="/critiques/<%= critique.id %>">
+    <input type="hidden" name="_method" value="delete">
+    <button class="delete is-pulled-right"></button>
+  </form>
+  <% end %>
   <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
     <div class="media-left">
       <a href="/users/<%= critique.user.id %>">

@@ -21,7 +21,8 @@
 <!-- USER CRITIQUES SECTION -->
 <section class="section">
   <% @user_critiques.each do |critique| %>
-  <%= erb :_critique_wall, locals: { critique: critique } %>
+    <% can_delete = (critique.user == current_user) ? true : false %>
+    <%= erb :_critique_wall, locals: { critique: critique, can_delete: can_delete } %>
   <% end %>
 </section>
 </div>
