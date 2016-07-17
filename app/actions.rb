@@ -85,7 +85,11 @@ end
 
 # Deletes a critique from the Critique Wall
 delete '/critiques/:critique_id' do
+  critique = Critique.find params[:critique_id]
+  user_id = critique.user_id
+  critique.destroy
 
+  redirect "/users/#{user_id}"
 end
 
 # Adds a new upvote to the critique
