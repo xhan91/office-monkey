@@ -12,7 +12,7 @@ helpers do
 end
 
 # Gets the main page of Office Monkey (Critique Wall)
-# require 'chartkick'
+require 'chartkick'
 get '/' do
   session[:user_id] = 9
   @has_title = false
