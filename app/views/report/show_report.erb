@@ -3,11 +3,11 @@
 <section class="section">
 <div class="container">
 <article class="message is-info">
-  <div class="message-header">
+  <div class="message-header report-title">
     <h2 class="is-medium">Amount of postive comments per subject</h2>
   </div>
   <div class="message-body">
-    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id'), library: {backgroundColor: "#EDF7FC"} %>
+    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 't'").group(:name).count('critiques.subject_id'), ytitle: "Total Likes", library: {backgroundColor: "#EDF7FC"} %>
   </div>
 </article>
 </div>
@@ -16,11 +16,11 @@
 <section class="section">
 <div class="container">
 <article class="message is-info">
-  <div class="message-header">
+  <div class="message-header report-title">
     <h2>Amount of negative comments per subject</h2>
   </div>
   <div class="message-body">
-    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id'), colors: ["DC3912"], library: {backgroundColor: "#EDF7FC"} %>
+    <%= column_chart Subject.joins(:critiques).where("critiques.is_ripe_banana = 'f'").group(:name).count('critiques.subject_id'), ytitle: "Total Dislikes", colors: ["DC3912"], library: {backgroundColor: "#EDF7FC"} %>
   </div>
 </article>
 </div>
@@ -29,11 +29,11 @@
 <section class="section">
 <div class="container">
 <article class="message is-info">
-  <div class="message-header">
+  <div class="message-header report-title">
     <h2>Most Discussed Subjects</h2>
   </div>
   <div class="message-body">
-    <%= pie_chart Subject.joins(:critiques).group('subjects.name').count('critiques.subject_id'), library: {backgroundColor: "#EDF7FC", is3D: true} %>
+    <%= pie_chart Subject.joins(:critiques).group('subjects.name').count('critiques.subject_id'), library: {backgroundColor: "#EDF7FC", is3D: true, legend: "50px"} %>
   </div>
 </article>
 </div>
@@ -45,7 +45,7 @@
 <% Subject.all.each do |subject| %>
 		<div class="column is-half">
 			<article class="message is-info">
- 			 <div class="message-header">
+ 			 <div class="message-header report-title">
 				<h3>Satisfaction with: <%= subject.name %></h3>
 			 </div>
   	<div class="message-body">
