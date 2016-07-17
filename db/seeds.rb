@@ -7,7 +7,7 @@ users = []
 10.times do |i|
   users[i] = User.create!(
     username: Faker::Name.first_name,
-    avatar: Faker::Avatar.image)
+    avatar: "/src/monkey-#{i+1}.png")
 end
 
 # generate subjects

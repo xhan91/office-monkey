@@ -12,9 +12,9 @@ helpers do
 end
 
 # Gets the main page of Office Monkey (Critique Wall)
-require 'chartkick'
+# require 'chartkick'
 get '/' do
-  session[:user_id] = 2
+  session[:user_id] = 9
   @has_title = false
   @critiques = Critique.all.order(created_at: :desc).limit(10)
   erb :main
@@ -22,10 +22,10 @@ end
 
 # Automatically set the session's user
 # Clicking the login button will trigger this action
-post '/sessions' do
-  session[:user_id] = User.find(2).id
-  redirect '/'
-end
+# post '/sessions' do
+#   session[:user_id] = User.find(2).id
+#   redirect '/'
+# end
 
 ###### USER PROFILE ###########
 
