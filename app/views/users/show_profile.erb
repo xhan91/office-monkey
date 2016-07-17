@@ -1,7 +1,9 @@
 <!-- USER DETAILS SECTION -->
+
+
 <section class="section">
   <div class="container">
-    <div class="tile is-ancestor">
+    <div class="columns">
       <!--- USER AVATAR AND USERNAME -->
       <%= erb :'users/_avatar_card', locals: { user: @user } %>
       <!-- MOST RECENT CRITIQUE -->
@@ -11,12 +13,16 @@
   </div>
 </section>
 
+<section class="section">
+<div class="container">
 <!-- FILTER CRITIQUE SELECTOR -->
 <%= erb :'/users/_filter_critiques' %>
 
 <!-- USER CRITIQUES SECTION -->
 <section class="section">
   <% @user_critiques.each do |critique| %>
-  <%= erb :'users/_critique', locals: { critique: critique } %>
+  <%= erb :_critique_wall, locals: { critique: critique } %>
   <% end %>
+</section>
+</div>
 </section>

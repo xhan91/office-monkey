@@ -2,7 +2,8 @@
 <% rotten_count = user.critiques.where(is_ripe_banana: false).count %>
 <% is_happy_user = (ripe_count >  rotten_count) %>
 
-<div class="tile is-parent">
+<!-- <div class="tile is-parent"> -->
+<div class="column is-one-third">
   <section class="section">
     <div class="message <%= is_happy_user ? "is-success" : "is-danger" %>">
       <div class="message-body">

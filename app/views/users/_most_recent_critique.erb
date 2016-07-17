@@ -1,11 +1,13 @@
-<div class="tile is-parent">
+<!-- <div class="tile is-parent"> -->
+<div class="column">
   <section class="section">
     <div class="message <%= most_recent_critique.is_ripe_banana ? "is-success" : "is-danger" %>"">
       <div class="message-body">
         <div class="card-content">
-          <div class="columns">
-            <h1 class="title recent-critique-heading">Most Recent Critique</h1>
-            <%= erb :'users/_critique', locals: { critique: most_recent_critique } %>
+          <div class="">
+            <label class="label title has-text-centered">Most Recent Critique</label>
+            <br>
+            <%= erb :_critique_wall, locals: { critique: most_recent_critique } %>
          </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 <% new_post ||= false %>
-<div class="box" style="<%= "display: none" if new_post %>"">
+<div class="box <%= critique.is_ripe_banana ? "critique-ripe" : "critique-rotten"%>" style="<%= "display: none" if new_post %>"">
   <article class="media message <%= critique.is_ripe_banana ? "is-success" : "is-danger"%>">
     <div class="media-left">
-      <a href="users/<%= critique.user_id %>">
+      <a href="/users/<%= critique.user.id %>">
       <p class="image is-64x64">
         <img src="<%= critique.user.avatar %> alt="avatar">
       </p>
@@ -12,6 +12,8 @@
       <div class="content">
         <p>
           <strong><%= critique.user.username %></strong> <small><%= critique.created_at %></small>
+          <br/>
+          <strong><%= critique.subject.name %></strong>
           <br/>
           <span class="icon">
           <i class="fa fa-thumbs-<%= critique.is_ripe_banana ? "up" : "down" %>" aria-hidden="true"></i></span><%= critique.content %>
