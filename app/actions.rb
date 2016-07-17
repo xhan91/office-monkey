@@ -66,7 +66,7 @@ post '/critiques' do
     is_ripe_banana: is_ripe_banana,
     content: content)
   if request.xhr?
-    erb :_critique_wall, layout: false, locals: { critique: critique }
+    erb :_critique_wall, layout: false, locals: { critique: critique, new_post: true }
   else
     redirect '/'
   end
