@@ -80,39 +80,44 @@
         </div>
         </div>
       </section>
-      <section class="section">
-        <div>
-          <h3>Top Critique</h3>
-        </div>
-        <div>
-          Most Critiqued
-        </div>
-      </section>
       <% end %>
 
     </div>
 
     <div class="column is-two-thirds">
       <section class="section critique-wall">
-<div class="box">
-
-        <form method="get" action="/critiques/search">
-          <p class="control has-addons">
-            <span class="select">
-              <select name="subject_id">
-                <option value="all">All</option>
-                <% Subject.all.each do |subject| %>
-                  <option value="<%= subject.id %>" ><%= subject.name %></option>
-                <% end %>
-              </select>
-            </span>
-            <input class="input is-expanded" name="search_string" type="text" placeholder="Find a feedback">
-            <button class="button is-info">
-              Search
-            </button>
-          </p>
-        </form>
-</div>
+        <div class="message is-info">
+          <div class="message-body">
+            <div class="card-content has-text-centered">
+              <label class="label">Top Feedback</label>
+              <% critique = Critique.last %>
+              <%= erb :_critique_wall, locals: { critique: critique } %>
+         <!--      <label class="label">Most Popular Subject</label>
+              <span class="subtitle"><%= Subject.first.name %></span> -->
+            </div>
+          </div>
+        </div>
+        <div>
+<!--       </section> -->
+      <!-- <section class="section critique-wall"> -->
+        <div class="box search-box">
+          <form method="get" action="/critiques/search">
+            <p class="control has-addons">
+              <span class="select">
+                <select name="subject_id">
+                  <option value="all">All</option>
+                  <% Subject.all.each do |subject| %>
+                    <option value="<%= subject.id %>" ><%= subject.name %></option>
+                  <% end %>
+                </select>
+              </span>
+              <input class="input is-expanded" name="search_string" type="text" placeholder="Find a feedback">
+              <button class="button is-info">
+                Search
+              </button>
+            </p>
+          </form>
+        </div>
 
         <% @critiques.each do |critique| %>
           <%= erb :_critique_wall, locals: { critique: critique } %>
