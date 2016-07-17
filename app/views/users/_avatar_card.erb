@@ -1,11 +1,17 @@
 <% ripe_count = user.critiques.where(is_ripe_banana: true).count %>
 <% rotten_count = user.critiques.where(is_ripe_banana: false).count %>
 <% is_happy_user = (ripe_count >  rotten_count) %>
+<% is_neutral_user = (ripe_count == rotten_count) %>
 
-<!-- <div class="tile is-parent"> -->
 <div class="column is-one-third">
   <section class="section">
-    <div class="message <%= is_happy_user ? "is-success" : "is-danger" %>">
+    <div class="message <%= if is_neutral_user
+                              "is-warning" 
+                            elsif is_happy_user 
+                              "is-success"
+                            else
+                              "is-danger"
+                            end %>">
       <div class="message-body">
         <div class="card-content">
           <div class="columns">
@@ -15,10 +21,18 @@
               </p>
             </div>
             <div class="column">
-              <div class="box <%= is_happy_user ? "avatar-card-happy" : "avatar-card-angry" %>">
+              <div class="box <%= if is_neutral_user
+                                      "avatar-card-neutral" 
+                                  elsif is_happy_user
+                                    "avatar-card-happy"
+                                  else
+                                    "avatar-card-angry"
+                                  end %>">
                 <h1 class="title avatar-card-username"><%= user.username %></h1>
                 <h2 class="subtitle">
-                  <% if  is_happy_user %>
+                  <% if  is_neutral_user %>
+                    is a neutral monkey
+                  <% elsif is_happy_user %>
                     is a happy monkey
                   <% else %>
                     is an angry monkey
