@@ -3,7 +3,7 @@
 $(document).ready(function() {
 
     // voting up and down in main page
-    $(".vote-btn").click(function() {
+    $('#critique-wall-section').on('click', '.vote-btn', function() {
         var voteBtn = $(this);
         voteBtn.addClass("is-loading");
         $.post("/votes", { 

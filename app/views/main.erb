@@ -83,7 +83,7 @@
     </div>
 
     <div class="column is-two-thirds">
-      <section class="section critique-wall">
+      <section id="critique-wall-section" class="section critique-wall">
         <div class="message is-info">
           <div class="message-body">
             <div class="card-content has-text-centered">
@@ -112,7 +112,7 @@
             </p>
           </form>
         </div>
-
+        
         <% @critiques.each do |critique| %>
           <%= erb :_critique_wall, locals: { critique: critique } %>
         <% end %>
